@@ -12,12 +12,12 @@
     <div class="signup">
     <h1>Change Password</h1>
     <form>
-        <label>New password</label>
-        <input type="text" placeholder="johndoe@gmail.com">
-        <label>Please retype the password</label>
-        <input type="text" >
+        <label for="newPassword">New password</label>
+        <input type="password" id="newPassword" placeholder="Enter new password">
+        <label for="newPassword2"> Please retype the password </label>
+        <input type="password" id="newPassword2">
 
-        <input type="button" style="width:375px; margin-top: 20px; font-size: large; background-color: aquamarine;" value="Change password" >
+        <input type="button" style="width:375px; margin-top: 20px; font-size: large; background-color: aquamarine;" value="Change password" onclick="checkSamePass()">
         
 
     </form>
