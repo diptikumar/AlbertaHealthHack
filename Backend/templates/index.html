@@ -1,0 +1,54 @@
+<! This is the Volunteer profile setup page >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Profile Setup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Volunteer Profile Setup</h2>
+        <form id="volunteerForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                <textarea id="bio" name="bio" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="disability">Disability Type:</label>
+                <input type="text" id="disability" name="disability" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <p id="responseMessage"></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById('volunteerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const bio = document.getElementById('bio').value;
+            const disability = document.getElementById('disability').value;
+
+            axios.post('/api/users/volunteer', {
+                name: name,
+                bio: bio,
+                disability: disability,
+                userType: 'volunteer'
+            })
+            .then(response => {
+                document.getElementById('responseMessage').textContent = 'Profile created successfully!';
+            })
+            .catch(error => {
+                document.getElementById('responseMessage').textContent = 'Error creating profile. Please try again.';
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
