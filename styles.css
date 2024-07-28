@@ -48,7 +48,6 @@ html {
   box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
 }
 
-
 .back-arrow {
   border: none;
   padding: 10px;
@@ -63,4 +62,23 @@ html {
 }
 .back-arrow:hover{
   box-shadow: grey 0 0 0 3px, transparent 0 0 0 0;
+}
+
+.signup{
+  width: 360px;
+  height: 620px;
+  margin:auto;
+}
+form label{
+  display: flex;
+  margin-top: 20px;
+  font-size: 18px;
+}
+form input{
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border: 1px solid gray;
+  border-radius: 6px;
+  outline-offset: none;
 }
