@@ -148,6 +148,20 @@ h1 {
   line-height: 25px;
 }
 
+.daily {
+    width: 100%;
+    top: 80%;
+    position: relative;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #121212;
+}
+.daily p {
+  margin: 20px auto;
+  text-weight: 100;
+  text-align: left;
+  line-height: 25px;
+}
 
 .form {
   width: 100%;

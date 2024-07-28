@@ -53,6 +53,7 @@ function login(event) {
         alert('Invalid email or password. Please try again.');
     }
 }
+
 // code for daily logs
 function saveLog() {
     const activity = document.getElementById('activity').value;
@@ -85,6 +86,7 @@ function saveLog() {
     window.location.href = 'dailyLog.html';
 }
 
+// Wait for DOM Content Loaded: Ensure that the JavaScript code runs only after the DOM has fully loaded.
 document.addEventListener("DOMContentLoaded", function() {
     const logsContainer = document.querySelector('#logsContainer');
     const logForm = document.querySelector('#logForm');
