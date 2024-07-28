@@ -116,8 +116,8 @@ h1{
 }
 .content{
   width: 100%;
+  top: 20%;
   position: absolute;
-  top: 50%;
   transform: translateY(-50%);
   text-align: center;
   color: #121212;
