@@ -275,3 +275,27 @@ button {
 .add-button:hover{
   background: rgba(0,0,0,0.2);
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+.button-container button {
+    width: 100px; /* Set a fixed width */
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: 1px solid #009688;
+    background-color: #fff;
+    color: #009688;
+    cursor: pointer;
+    text-align: center; /* Center the text */
+}
+
+.button-container button:hover {
+    background-color: #009688;
+    color: #fff;
+}
