@@ -242,7 +242,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+
 // handle skills for summary
+// Check for element existence before adding event listeners
+document.addEventListener("DOMContentLoaded", function() {
+    const logsContainer = document.querySelector('#logsContainer');
+    const logForm = document.querySelector('#logForm');
+    const nextButton = document.querySelector('#nextButton');
+    const prevButton = document.querySelector('#prevButton');
+
+    if (logsContainer) {
+        displayLog();
+        if (nextButton) nextButton.addEventListener('click', () => changeLog(1));
+        if (prevButton) prevButton.addEventListener('click', () => changeLog(-1));
+    }
+
+    if (logForm) {
+        document.querySelector('#logForm button').addEventListener('click', saveLog);
+    }
+
+    // Check for the canvas element before creating the chart
+    const skillsChartElement = document.getElementById('skillsChart');
+    if (skillsChartElement) {
+        createSkillsChart();
+    }
+});
+
+// Function to count skills learned each day
+function countSkillsPerDay() {
+    const skills = getSkills();
+    const pastWeekDates = getPastWeekDates();
+    const skillCounts = pastWeekDates.map(date => {
+        return skills.filter(skill => {
+            const skillDate = new Date(skill.date);
+            return skillDate.toISOString().split('T')[0] === date;
+        }).length;
+    });
+    return skillCounts;
+}
+
 // Function to get skills from localStorage
 function getSkills() {
     return JSON.parse(localStorage.getItem("stickynotes-skills") || "[]");
@@ -264,7 +303,10 @@ function countSkillsPerDay() {
     const skills = getSkills();
     const pastWeekDates = getPastWeekDates();
     const skillCounts = pastWeekDates.map(date => {
-        return skills.filter(skill => new Date(skill.date).toISOString().split('T')[0] === date).length;
+        return skills.filter(skill => {
+            const skillDate = new Date(skill.date);
+            return skillDate.toISOString().split('T')[0] === date;
+        }).length;
     });
     return skillCounts;
 }
@@ -297,5 +339,100 @@ function createSkillsChart() {
     });
 }
 
-// Call the function to create the chart when the page loads
-document.addEventListener('DOMContentLoaded', createSkillsChart);
+// Function to save daily log
+function saveLog() {
+    console.log("saveLog function called");
+
+    const activity = document.getElementById('activity').value;
+    const mood = document.getElementById('mood').value;
+    const achievement = document.getElementById('achievement').value;
+    const challenges = document.getElementById('challenges').value;
+    const comments = document.getElementById('comments').value;
+    const date = new Date().toISOString().split('T')[0];
+
+    const log = {
+        date: date,
+        activity: activity,
+        mood: mood,
+        achievement: achievement,
+        challenges: challenges,
+        comments: comments
+    };
+
+    let logs = JSON.parse(localStorage.getItem('logs')) || [];
+    logs.push(log);
+    localStorage.setItem('logs', JSON.stringify(logs));
+
+    console.log('Log saved:', log);
+    console.log('All logs:', logs);
+
+    alert('Log saved!');
+
+    // Redirect to dailyLog.html
+    window.location.href = 'dailyLog.html';
+}
+
+let currentLogIndex = 0;
+
+// Function to display the latest log by default
+function displayLog() {
+    const logs = JSON.parse(localStorage.getItem('logs')) || [];
+    if (logs.length === 0) {
+        logsContainer.innerHTML = '<p>No logs available.</p>';
+        if (nextButton) nextButton.disabled = true;
+        if (prevButton) prevButton.disabled = true;
+        return;
+    }
+
+    // Show the latest log by default
+    currentLogIndex = logs.length - 1;
+
+    logsContainer.innerHTML = ''; // Clear previous content
+
+    const log = logs[currentLogIndex];
+    const logDiv = document.createElement('div');
+    logDiv.classList.add('log-entry');
+    logDiv.innerHTML = `
+        <h3>Date: ${log.date}</h3>
+        <p>Activity: ${log.activity}</p>
+        <p>Mood/Health: ${log.mood}</p>
+        <p>Achievement/New Skill Learned: ${log.achievement}</p>
+        <p>Challenges: ${log.challenges}</p>
+        <p>Comments: ${log.comments}</p>
+    `;
+    logsContainer.appendChild(logDiv);
+
+    if (prevButton) prevButton.disabled = currentLogIndex === 0;
+    if (nextButton) nextButton.disabled = currentLogIndex === logs.length - 1;
+}
+
+function changeLog(direction) {
+    const logs = JSON.parse(localStorage.getItem('logs')) || [];
+    currentLogIndex += direction;
+    currentLogIndex = Math.max(0, Math.min(currentLogIndex, logs.length - 1));
+    displayLog();
+}
+
+// Code to handle skills chart creation
+document.addEventListener('DOMContentLoaded', function() {
+    const logsContainer = document.querySelector('#logsContainer');
+    const logForm = document.querySelector('#logForm');
+    const nextButton = document.querySelector('#nextButton');
+    const prevButton = document.querySelector('#prevButton');
+
+    if (logsContainer) {
+        displayLog();
+        if (nextButton) nextButton.addEventListener('click', () => changeLog(1));
+        if (prevButton) prevButton.addEventListener('click', () => changeLog(-1));
+    }
+
+    if (logForm) {
+        document.querySelector('#logForm button').addEventListener('click', saveLog);
+    }
+
+    // Check for the canvas element before creating the chart
+    const skillsChartElement = document.getElementById('skillsChart');
+    if (skillsChartElement) {
+        createSkillsChart();
+    }
+});
