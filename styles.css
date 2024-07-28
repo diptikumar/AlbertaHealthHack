@@ -128,7 +128,7 @@ h1 {
 .banner {
   background-color: #BFDACC;
   width: 100%;
-  height: 100vh;
+  height: 150vh;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -136,7 +136,7 @@ h1 {
 
 .content {
   width: 100%;
-  top: 55%;
+  top: 40%;
   position: absolute;
   transform: translateY(-50%);
   text-align: center;
