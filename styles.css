@@ -106,7 +106,6 @@ h1{
   float: right;
 }
 
-<<<<<<< HEAD
 .banner{
   background-color: #BFDACC;
   width: 100%;
@@ -164,7 +163,6 @@ button:hover span{
 button:hover {
   border: none;
 }
-=======
 #skills{
   display: grid;
   grid-template-columns: repeat(auto-fill, 200px); /*allows us to position the skill notes on page*/
@@ -196,4 +194,3 @@ button:hover {
 .addButton:hover{
   background: rgba(0,0,0,0.2);
 }
->>>>>>> 9bc834eff95c767b79714d3f180664775394e267
