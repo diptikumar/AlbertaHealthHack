@@ -284,8 +284,10 @@ button {
 
 .button-container {
     display: flex;
+    width: 300px;
+    margin-left: 35%;
     justify-content: center;
-    gap: 10px; /* Space between buttons */
+    gap: 0px; /* Space between buttons */
     margin-top: 20px;
 }
 
