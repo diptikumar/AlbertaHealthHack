@@ -1,1 +1,5 @@
-// Hello this is Dipti
+
+
+function back() {
+    window.history.back();
+}

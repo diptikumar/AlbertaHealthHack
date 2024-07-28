@@ -6,14 +6,14 @@ html {
     position: relative;
   }
   
-  .center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
 
 .button-35 {
@@ -46,4 +46,21 @@ html {
 
 .button-35:hover {
   box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+}
+
+
+.back-arrow {
+  border: none;
+  padding: 10px;
+  text-align: center;
+  margin: 4px 2px;
+  border-radius: 100px;
+}
+
+.back-arrow:before {
+  content: '←';
+  font-size: 1.5rem;
+}
+.back-arrow:hover{
+  box-shadow: grey 0 0 0 3px, transparent 0 0 0 0;
 }
