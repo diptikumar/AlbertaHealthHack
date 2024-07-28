@@ -136,7 +136,7 @@ h1 {
 
 .content {
   width: 100%;
-  top: 53%;
+  top: 55%;
   position: absolute;
   transform: translateY(-50%);
   text-align: center;
@@ -144,7 +144,7 @@ h1 {
 }
 
 .content h1 {
-  font-size: 40px;
+  font-size: 35px;
   margin-top: 10px;
 }
 
@@ -329,6 +329,11 @@ button {
     margin-top: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.graph{
+    width:400px;
+    height: 250px;
 }
 
 .button-container button:hover {
