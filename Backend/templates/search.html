@@ -1,21 +1,35 @@
 <!this is the search page for parents>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer Search</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
 </head>
 <body>
+    <!-- Navigation bar at the top -->
+    <div class="navbar">
+        <a href="#">Dashboard</a>
+        <a href="#">Find Mentor</a>
+        <a href="#">Daily Log</a>
+        <a href="#">Progress</a>
+        <a href="#">Logout</a>
+    </div>
+    
+    <!-- Main container  -->
     <div class="container">
         <h2>Search for Volunteers</h2>
-        <input type="text" id="searchInput" placeholder="Enter disability type">
-        <button onclick="searchVolunteers()">Search</button>
-        <div id="results"></div>
+        <input type="text" id="searchInput" placeholder="Enter disability type"><!-- Input field for search -->
+        <button onclick="searchVolunteers()">Search</button><!-- Search button -->
+        <div id="results"></div> <!-- Container for displaying search results -->
+    
     </div>
 
+     <!-- Includes Axios for making HTTP requests -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+         // Function to search volunteers based on disability type
         function searchVolunteers() {
             const disability = document.getElementById('searchInput').value;
 
@@ -23,9 +37,10 @@
                 .then(response => {
                     const results = response.data;
                     const resultsDiv = document.getElementById('results');
-                    resultsDiv.innerHTML = ''; // Clear previous results
+                    resultsDiv.innerHTML = ''; // Clears previous results
 
                     if (results.length > 0) {
+                        // Loops through each volunteer and create a div to display their information
                         results.forEach(volunteer => {
                             const volunteerDiv = document.createElement('div');
                             volunteerDiv.className = 'volunteer-profile';
@@ -38,12 +53,12 @@
                             resultsDiv.appendChild(volunteerDiv);
                         });
                     } else {
-                        resultsDiv.innerHTML = '<p>No volunteers found for the specified disability.</p>';
+                        resultsDiv.innerHTML = '<p>No volunteers found for the specified disability.</p>';// Display message if no volunteers found
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching volunteers:', error);
-                    document.getElementById('results').innerHTML = '<p>Error fetching volunteers. Please try again later.</p>';
+                    document.getElementById('results').innerHTML = '<p>Error fetching volunteers. Please try again later.</p>';// Display error message
                 });
         }
     </script>
