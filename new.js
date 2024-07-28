@@ -1,3 +1,5 @@
+let credentialMap = {} //stores login info
+
 //code for arrow back button
 function back() {
     window.history.back();
@@ -15,13 +17,42 @@ function verifyEmail() {
 
 }
 //code for storing user credentials in sign up page
-function storeInfo(event){
+function signIn(event){
     event.preventDefault(); // Prevent form from submitting the traditional way: needed some help from chat gpt
 
     const email = document.getElementById('email').value; //get the value enetered in the email input box
     const pass = document.getElementById('password').value;
+
+    // Retrieve the existing credentials from localStorage
+    const credentials = JSON.parse(localStorage.getItem('credentials')) || {};
+
+    // Store the new credentials
+    credentials[email] = pass;
+
+    // Save the updated credentials back to localStorage
+    localStorage.setItem('credentials', JSON.stringify(credentials));
+
+    // Navigate to the homepage after storing the credentials
+    window.location.href = 'homepage.html';
 }
 
+function login(event){
+    event.preventDefault(); // Prevent form from submitting the traditional way: needed some help from chat gpt
+
+    const email = document.getElementById('loginEmail').value; //get the value enetered in the email input box
+    const pass = document.getElementById('loginPass').value;
+
+    // Retrieve the stored credentials from localStorage
+    const credentials = JSON.parse(localStorage.getItem('credentials')) || {};
+
+    // Check if the entered email exists and the password matches
+    if (credentials[email] && credentials[email] === password) {
+        alert('Login successful!');
+        window.location.href = 'homepage.html'; // Redirect to homepage
+    } else {
+        alert('Invalid email or password. Please try again.');
+    }
+}
 // code for daily logs
 function saveLog() {
     const activity = document.getElementById('activity').value;

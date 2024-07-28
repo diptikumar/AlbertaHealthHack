@@ -12,11 +12,11 @@
 
     <div class="signup">
     <h1>Log in to your account</h1>
-    <form>
+    <form id="loginForm" onsubmit="login(event)">
         <label>Email</label>
-        <input type="text" placeholder="johndoe@gmail.com">
+        <input type="text" placeholder="johndoe@gmail.com" id="loginEmail">
         <label>Password</label>
-        <input type="text" >
+        <input type="text" id="loginPass">
         <a href="homepage.html">
             <input type="button" style="width:375px; margin-top: 20px; font-size: large; background-color: aquamarine;" value="Login">
         </a>
