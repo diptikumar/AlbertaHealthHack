@@ -329,3 +329,100 @@ button {
     background-color: #009688;
     color: #fff;
 }
+
+/* CSS styles for the search page */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #B2D3C2;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #7EA97D;
+  width: 100%;
+  max-width: 1440px;
+  height: 106px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.container {
+  text-align: center;
+  padding: 50px;
+}
+
+h2 {
+  color: #216516;
+  font-family: 'Inter', sans-serif;
+  font-size: 36px;
+}
+
+#searchInput {
+  width: 754px;
+  height: 42px;
+  border-radius: 21px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+button {
+  height: 40px;
+  border-radius: 21px;
+  border: none;
+  background-color: #35752b;
+  color: white;
+  padding: 0 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #184d12;
+}
+
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.volunteer-profile {
+  background-color: white;
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(159, 206, 161, 0.1);
+  font-size: 16px;
+  color: #216516;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.volunteer-profile h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.volunteer-profile p {
+  margin: 5px 0;
+  text-align: center;
+}
