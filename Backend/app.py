@@ -1,3 +1,7 @@
+
+#This is the main appplication file where the Flask app is initiated and configured.
+# It registers the blueprintsfor routing and defines the root routes.
+
 from flask import Flask
 from models import db
 from routes.user_routes import user_bp
@@ -19,4 +23,3 @@ def search_page():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
