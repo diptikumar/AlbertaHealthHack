@@ -1,4 +1,4 @@
-<! This is the Volunteer profile setup page >
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,7 +35,7 @@
             const bio = document.getElementById('bio').value;
             const disability = document.getElementById('disability').value;
 
-            axios.post('/api/users/volunteer', {
+            axios.post('/submit_volunteer', {
                 name: name,
                 bio: bio,
                 disability: disability,
