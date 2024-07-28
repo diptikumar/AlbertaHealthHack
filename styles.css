@@ -103,7 +103,6 @@ h1 {
 
 .navbar ul {
   list-style-type: none;
-  background-color: #6AD9D9;
   padding: 0px;
   margin: 0px;
   overflow: hidden;
@@ -113,6 +112,7 @@ h1 {
   color: #121212;
   text-decoration: none;
   padding: 15px;
+  radius: 15px;
   display: block;
   text-align: center;
 }
