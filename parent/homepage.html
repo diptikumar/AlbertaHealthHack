@@ -19,9 +19,22 @@
         </ul>
     </nav>
 
+    <!-- Main container -->
+    <div class="container">
+        <h2>Search for Volunteers</h2>
+        <input type="text" id="searchInput" placeholder="Enter disability type"><!-- Input field for search -->
+        <button onclick="searchVolunteers()">Search</button><!-- Search button -->
+        <div id="results" class="results-container"></div> <!-- Container for displaying search results -->
+    </div>
+
     
 
     <button type="button" class="back-arrow" onclick="back()"></button>
+
+    
+    <!-- Includes Axios for making HTTP requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
