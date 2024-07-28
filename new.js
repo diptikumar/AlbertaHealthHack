@@ -17,39 +17,45 @@ function verifyEmail() {
 
 }
 //code for storing user credentials in sign up page
-function showLogin() {
-    document.getElementById('signupForm').style.display = 'none';
-    document.getElementById('login').style.display = 'block';
-    document.getElementById('loginForm').style.display = 'block';
-}
 
 function signIn(event) {
     event.preventDefault(); // Prevent form from submitting the traditional way
 
-    const email = document.getElementById('email').value; // Get the value entered in the email input box
-    const pass = document.getElementById('password').value;
+    const email = document.getElementById('email').value.trim(); // Get the value entered in the email input box
+    const pass = document.getElementById('password').value.trim();
+
+    console.log('Email:', email);
+    console.log('Password:', pass);
 
     // Retrieve the existing credentials from localStorage
-    const credentials = JSON.parse(localStorage.getItem('credentials')) || {};
+    let credentials = localStorage.getItem('credentials');
+    credentials = credentials ? JSON.parse(credentials) : {};
 
-    // Store the new credentials
-    credentials[email] = pass;
+    if (!credentials[email]) {
+        // Store the new credentials
+        credentials[email] = pass;
 
-    // Save the updated credentials back to localStorage
-    localStorage.setItem('credentials', JSON.stringify(credentials));
+        // Save the updated credentials back to localStorage
+        localStorage.setItem('credentials', JSON.stringify(credentials));
 
-    // Log to confirm storage
-    console.log('Stored credentials:', credentials);
+        // Log to confirm storage
+        console.log('Stored credentials:', credentials);
 
-    // Navigate to the homepage after storing the credentials
-    window.location.href = 'homepage.html';
+        // Navigate to the homepage after storing the credentials
+        window.location.href = 'homepage.html';
+    } else {
+        alert("An account with this email address already exists");
+    }
 }
 
 function login(event) {
     event.preventDefault(); // Prevent form from submitting the traditional way
 
-    const email = document.getElementById('loginEmail').value; // Get the value entered in the email input box
-    const pass = document.getElementById('loginPass').value;
+    const email = document.getElementById('loginEmail').value.trim(); // Get the value entered in the email input box
+    const pass = document.getElementById('loginPass').value.trim();
+
+    console.log('Login Email:', email);
+    console.log('Login Password:', pass);
 
     // Retrieve the stored credentials from localStorage
     const credentials = JSON.parse(localStorage.getItem('credentials')) || {};
@@ -58,13 +64,16 @@ function login(event) {
     console.log('Retrieved credentials:', credentials);
 
     // Check if the entered email exists and the password matches
-    if (credentials[email] && credentials[email] === pass) {
-        alert('Login successful!');
+    if(!credentials[email] ){
+        alert("An account with this email doesnt exist. Try signing up for an account.")
+    }
+    else if (credentials[email] && credentials[email] === pass) {
         window.location.href = 'homepage.html'; // Redirect to homepage
     } else {
         alert('Invalid email or password. Please try again.');
     }
 }
+
 
 // code for daily logs
 document.addEventListener("DOMContentLoaded", function() {
