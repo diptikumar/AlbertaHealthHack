@@ -2,8 +2,10 @@ document.getElementById('volunteerForm').addEventListener('submit', function(eve
     event.preventDefault();
     
     const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
     const bio = document.getElementById('bio').value;
     const disability = document.getElementById('disability').value;
+    
 
     // Retrieve the existing profiles from localStorage
     const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
@@ -11,8 +13,10 @@ document.getElementById('volunteerForm').addEventListener('submit', function(eve
     // Create a new profile object
     const newProfile = {
         name: name,
+        email: email,
         bio: bio,
-        disability: disability
+        disability: disability,
+        
     };
 
     // Add the new profile to the list of profiles
@@ -52,8 +56,10 @@ function searchVolunteers() {
             profileDiv.innerHTML = `
                 <h3>Volunteer Profile</h3>
                 <p><strong>Name:</strong> ${profile.name}</p>
+                <p><strong>Email:</strong> ${profile.email}</p>
                 <p><strong>Bio:</strong> ${profile.bio}</p>
                 <p><strong>Disability:</strong> ${profile.disability}</p>
+                
             `;
             resultsDiv.appendChild(profileDiv);
         });
