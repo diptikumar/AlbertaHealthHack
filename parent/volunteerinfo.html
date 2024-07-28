@@ -1,0 +1,47 @@
+<!--this is the search page for parents-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Search</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- Link to external CSS file -->
+    <link 
+     href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" 
+     rel="stylesheet"
+    />
+</head>
+<body>
+    <button type="button" class="back-arrow" onclick="back()"></button>
+
+    <div class="container">
+        <h1>Tell us a bit about yourself</h1>
+        <form id="volunteerForm">
+            <div class="form-group">
+                <label for="name">What is your Name </label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="disability">What disability do you have?</label> <!--needs to be a dropdown-->
+                <input type="text" id="disability" name="disability" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Whats your email</label>
+                <input type="" id="email" name="email" placeholder="johndoe@gmail.com" required>>
+            </div>    
+            <div class="form-group">
+                <label for="bio">Write Briefly about yourself</label>
+                <input type="text" id="bio"name="bio" required>
+            </div>
+            
+           
+            <button type="submit">Submit</button>
+
+        </form>
+        <p id="responseMessage"></p>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
