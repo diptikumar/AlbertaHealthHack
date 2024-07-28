@@ -14,8 +14,15 @@ function verifyEmail() {
     }
 
 }
-// code for daily logs
+//code for storing user credentials in sign up page
+function storeInfo(event){
+    event.preventDefault(); // Prevent form from submitting the traditional way: needed some help from chat gpt
 
+    const email = document.getElementById('email').value; //get the value enetered in the email input box
+    const pass = document.getElementById('password').value;
+}
+
+// code for daily logs
 function saveLog() {
     const activity = document.getElementById('activity').value;
     const mood = document.getElementById('mood').value;
