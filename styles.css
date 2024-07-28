@@ -1,11 +1,12 @@
 html {
-  font-family: Inter,sans-serif;
+  font-family: Inter, sans-serif;
 }
+
 .container {
-    height: 500px;
-    position: relative;
-  }
-  
+  height: 500px;
+  position: relative;
+}
+
 .center {
   margin: 0;
   position: absolute;
@@ -15,12 +16,11 @@ html {
   transform: translate(-50%, -50%);
 }
 
-
 .button-35 {
   align-items: center;
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+  box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, 0.1) 0 6px 20px;
   box-sizing: border-box;
   color: #121212;
   cursor: pointer;
@@ -36,7 +36,7 @@ html {
   height: 7rem;
   text-align: center;
   text-decoration: none;
-  transition: box-shadow .2s,-webkit-box-shadow .2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
   white-space: nowrap;
   border: 0;
   user-select: none;
@@ -44,16 +44,19 @@ html {
   touch-action: manipulation;
 }
 
-[type="button"]:hover {
+.button-35:hover {
   box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
 }
 
 .back-arrow {
+  width: 50px; 
+  height: 50px;
   border: none;
   padding: 10px;
   text-align: center;
   margin: 4px 2px;
   border-radius: 100px;
+  background: olive;
 }
 
 .back-arrow:before {
@@ -61,18 +64,26 @@ html {
   font-size: 1.5rem;
 }
 
-.signup{
+.signup {
   width: 360px;
   height: 620px;
-  margin:auto;
+  margin: auto;
 }
-form label{
+form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+form label {
   display: flex;
   margin-top: 20px;
   font-size: 18px;
 }
-form input{
-  width: 100%;
+
+form input {
+  width: 113%;
   padding: 7px;
   border: none;
   border: 1px solid gray;
@@ -80,11 +91,11 @@ form input{
   outline-offset: none;
 }
 
-h1{
+h1 {
   text-align: center;
 }
 
-.navbar ul{
+.navbar ul {
   list-style-type: none;
   background-color: aquamarine;
   padding: 0px;
@@ -92,22 +103,23 @@ h1{
   overflow: hidden;
 }
 
-.navbar a{
+.navbar a {
   color: #fff;
   text-decoration: none;
   padding: 15px;
   display: block;
   text-align: center;
 }
-.navbar a:hover{
-  background-color:bisque;
+
+.navbar a:hover {
+  background-color: bisque;
 }
-.navbar li{
+
+.navbar li {
   float: right;
 }
 
-<<<<<<< HEAD
-.banner{
+.banner {
   background-color: #BFDACC;
   width: 100%;
   height: 100vh;
@@ -115,25 +127,49 @@ h1{
   background-position: center;
   position: relative;
 }
-.content{
+
+.content {
   width: 100%;
-  top: 20%;
+  top: 30%;
   position: absolute;
   transform: translateY(-50%);
   text-align: center;
   color: #121212;
 }
-.content h1{
+
+.content h1 {
   font-size: 50px;
   margin-top: 20px;
 }
-.content p{
+
+.content p {
   margin: 20px auto;
   font-weight: 100;
   line-height: 25px;
 }
 
-button{
+
+.form {
+  width: 100%;
+  top: 100%;
+  position: absolute;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #121212;
+}
+
+.form h1 {
+  font-size: 50px;
+  margin-top: 20px;
+}
+
+.form p {
+  margin: 20px auto;
+  font-weight: 100;
+  line-height: 25px;
+}
+
+.button1 {
   width: 200px;
   padding: 15px 0;
   text-align: center;
@@ -146,8 +182,11 @@ button{
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  display: inline-block;
 }
-span{
+
+.button1 span {
   background: #009688;
   height: 100%;
   width: 0;
@@ -158,13 +197,40 @@ span{
   z-index: -1;
   transition: 0.5s;
 }
-button:hover span{
+
+.button1:hover span {
   width: 100%;
 }
-button:hover {
+
+.button1:hover {
   border: none;
 }
-=======
+
+
+label, input, button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+
+input, button {
+  padding: 10px;
+}
+
+button {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#logsContainer {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+
 #skills{
   display: grid;
   grid-template-columns: repeat(auto-fill, 200px); /*allows us to position the skill notes on page*/
@@ -183,17 +249,15 @@ button:hover {
   font-size: 16px;
 }
 
-.addButton{
+.add-button{
   height: 200px;
   border: none;
   outline: none;
   border-radius: 10px;
   font-size: 120px;
   color: rgba(0, 0, 0,0.5);
-  transition: background 0.2s;
 }
 
-.addButton:hover{
+.add-button:hover{
   background: rgba(0,0,0,0.2);
 }
->>>>>>> 9bc834eff95c767b79714d3f180664775394e267
