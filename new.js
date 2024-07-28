@@ -6,12 +6,12 @@ function back() {
 }
 
 function verifyEmail() {
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
 
     if (email === 'dipti1kumar@gmail.com') {
-        window.location.href = 'volunteerVerified.html';
+        window.location.href ='volunteerInfo.html';
     } else {
-       alert("Error! You are not verified. Contact Alberta Health Services Volunteer Department to volunteer.");
+       alert("Error! You are not verified. Contact Alberta Childrens Hospital Volunteer Department to volunteer.");
     }
 
 }
