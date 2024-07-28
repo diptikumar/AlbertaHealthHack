@@ -17,6 +17,12 @@ function verifyEmail() {
 
 }
 //code for storing user credentials in sign up page
+function showLogin() {
+    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('login').style.display = 'block';
+    document.getElementById('loginForm').style.display = 'block';
+}
+
 function signIn(event) {
     event.preventDefault(); // Prevent form from submitting the traditional way
 
@@ -32,6 +38,9 @@ function signIn(event) {
     // Save the updated credentials back to localStorage
     localStorage.setItem('credentials', JSON.stringify(credentials));
 
+    // Log to confirm storage
+    console.log('Stored credentials:', credentials);
+
     // Navigate to the homepage after storing the credentials
     window.location.href = 'homepage.html';
 }
@@ -45,6 +54,9 @@ function login(event) {
     // Retrieve the stored credentials from localStorage
     const credentials = JSON.parse(localStorage.getItem('credentials')) || {};
 
+    // Log to confirm retrieval
+    console.log('Retrieved credentials:', credentials);
+
     // Check if the entered email exists and the password matches
     if (credentials[email] && credentials[email] === pass) {
         alert('Login successful!');
@@ -53,7 +65,6 @@ function login(event) {
         alert('Invalid email or password. Please try again.');
     }
 }
-
 
 // code for daily logs
 document.addEventListener("DOMContentLoaded", function() {
