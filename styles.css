@@ -344,7 +344,6 @@ button {
 /* CSS styles for the search page */
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #B2D3C2;
   margin: 0;
   padding: 0;
 }
@@ -403,9 +402,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #184d12;
-}
 
 .results-container {
   display: flex;
@@ -438,4 +434,11 @@ button:hover {
 .volunteer-profile p {
   margin: 5px 0;
   text-align: center;
+}
+
+.center-text {
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 20px;
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }

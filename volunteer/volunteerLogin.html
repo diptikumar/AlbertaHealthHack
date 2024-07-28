@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer Login</title>
 </head>
-<body>
+<body style="background-color: #c7ffdf;">
+
     <button type="button" class="back-arrow" onclick="window.location.href='volunteerSignUp.html'"></button>
 
     <div class="signup">
@@ -19,10 +20,26 @@
         <label>Password</label>
         <input type="password" id="loginPass" required autocomplete="current-password">
         
-        <input type="submit" style="width:375px; margin-top: 20px; font-size: large; background-color: #6AD9D9;" value="Sign up" onclick="verifyEmail()">
+        <input type="submit" style="width:375px; margin-top: 20px; font-size: large; background-color: #54B77E;" value="Sign up" onclick="verifyEmail()">
         
         <p><a href="forgotPass.html" style="color: black;"> Forgot your password?</a></p>
     </form>
     </div>
+
+    <input type="button" class="button-35" value="Sign up" onclick="verifyEmail()">
+    </div>
+
+    <script>
+        function verifyEmail() {
+            const email = document.getElementById('email').value.trim();
+
+            if (email ==='dipti1kumar@gmail.com') {
+                window.location.href = 'volunteerVerified.html';
+            } else {
+                alert("Error! You are not verified. Contact Alberta Health Services Volunteer Department to volunteer.");
+            }
+        }
+    </script>
+
 </body>
 </html>
