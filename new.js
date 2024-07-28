@@ -54,12 +54,14 @@ function login(event) {
     }
 }
 
-// code for daily logs
+// Code for daily logs
 document.addEventListener("DOMContentLoaded", function() {
     const logsContainer = document.querySelector('#logsContainer');
     const logForm = document.querySelector('#logForm');
     const nextButton = document.querySelector('#nextButton');
     const prevButton = document.querySelector('#prevButton');
+
+    let currentLogIndex = 0;
 
     if (logsContainer) {
         displayLog();
@@ -103,8 +105,6 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = 'dailyLog.html';
     }
 
-    let currentLogIndex = 0;
-
     function displayLog() {
         const logs = JSON.parse(localStorage.getItem('logs')) || [];
         if (logs.length === 0) {
@@ -141,16 +141,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-function checkSamePass(){
-    const newPassword = document.getElementById("newPassword").value;
-    const newPassword2 = document.getElementById("newPassword2").value;
-
-    if (newPassword === newPassword2) {
-        alert("Password changed succesfully")
-    } else {
-        alert("Passwords do not match. Please try again.")
-    }
-}
 
 //code for the skills progress section
 document.addEventListener('DOMContentLoaded', () => {
