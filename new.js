@@ -55,44 +55,16 @@ function login(event) {
 }
 
 // code for daily logs
-function saveLog() {
-    const activity = document.getElementById('activity').value;
-    const mood = document.getElementById('mood').value;
-    const achievement = document.getElementById('achievement').value;
-    const challenges = document.getElementById('challenges').value;
-    const comments = document.getElementById('comments').value;
-    const date = new Date().toISOString().split('T')[0];
-
-    const log = {
-        date: date,
-        activity: activity,
-        mood: mood,
-        achievement: achievement,
-        challenges: challenges,
-        comments: comments
-    };
-
-
-    let logs = JSON.parse(localStorage.getItem('logs')) || [];
-    logs.push(log);
-    localStorage.setItem('logs', JSON.stringify(logs));
-
-    console.log('Log saved:', log);
-    console.log('All logs:', logs);
-
-    alert('Log saved!');
-
-    // Redirect to dailyLog.html
-    window.location.href = 'dailyLog.html';
-}
-
-// Wait for DOM Content Loaded: Ensure that the JavaScript code runs only after the DOM has fully loaded.
 document.addEventListener("DOMContentLoaded", function() {
     const logsContainer = document.querySelector('#logsContainer');
     const logForm = document.querySelector('#logForm');
+    const nextButton = document.querySelector('#nextButton');
+    const prevButton = document.querySelector('#prevButton');
 
     if (logsContainer) {
-        displayLogs();
+        displayLog();
+        if (nextButton) nextButton.addEventListener('click', () => changeLog(1));
+        if (prevButton) prevButton.addEventListener('click', () => changeLog(-1));
     }
 
     if (logForm) {
@@ -100,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function saveLog() {
+        console.log("saveLog function called");
+
         const activity = document.getElementById('activity').value;
         const mood = document.getElementById('mood').value;
         const achievement = document.getElementById('achievement').value;
@@ -126,28 +100,44 @@ document.addEventListener("DOMContentLoaded", function() {
         alert('Log saved!');
 
         // Redirect to dailyLog.html
-        window.location.href = 'parent/dailyLog.html';
+        window.location.href = 'dailyLog.html';
     }
 
-    function displayLogs() {
+    let currentLogIndex = 0;
+
+    function displayLog() {
         const logs = JSON.parse(localStorage.getItem('logs')) || [];
-        const logsContainer = document.getElementById('logsContainer');
+        if (logs.length === 0) {
+            logsContainer.innerHTML = '<p>No logs available.</p>';
+            if (nextButton) nextButton.disabled = true;
+            if (prevButton) prevButton.disabled = true;
+            return;
+        }
 
         logsContainer.innerHTML = ''; // Clear previous content
 
-        logs.forEach(log => {
-            const logDiv = document.createElement('div');
-            logDiv.classList.add('log-entry');
-            logDiv.innerHTML = `
-                <h3>Date: ${log.date}</h3>
-                <p>Activity: ${log.activity}</p>
-                <p>Mood/Health: ${log.mood}</p>
-                <p>Achievement/New Skill Learned: ${log.achievement}</p>
-                <p>Challenges: ${log.challenges}</p>
-                <p>Comments: ${log.comments}</p>
-            `;
-            logsContainer.appendChild(logDiv);
-        });
+        const log = logs[currentLogIndex];
+        const logDiv = document.createElement('div');
+        logDiv.classList.add('log-entry');
+        logDiv.innerHTML = `
+            <h3>Date: ${log.date}</h3>
+            <p>Activity: ${log.activity}</p>
+            <p>Mood/Health: ${log.mood}</p>
+            <p>Achievement/New Skill Learned: ${log.achievement}</p>
+            <p>Challenges: ${log.challenges}</p>
+            <p>Comments: ${log.comments}</p>
+        `;
+        logsContainer.appendChild(logDiv);
+
+        if (prevButton) prevButton.disabled = currentLogIndex === 0;
+        if (nextButton) nextButton.disabled = currentLogIndex === logs.length - 1;
+    }
+
+    function changeLog(direction) {
+        const logs = JSON.parse(localStorage.getItem('logs')) || [];
+        currentLogIndex += direction;
+        currentLogIndex = Math.max(0, Math.min(currentLogIndex, logs.length - 1));
+        displayLog();
     }
 });
 

@@ -130,7 +130,7 @@ h1 {
 
 .content {
   width: 100%;
-  top: 40%;
+  top: 20%;
   position: absolute;
   transform: translateY(-50%);
   text-align: center;
@@ -150,8 +150,8 @@ h1 {
 
 .daily {
     width: 100%;
-    top: 80%;
-    position: relative;
+    top: 25%;
+    position: absolute;
     transform: translateY(-50%);
     text-align: center;
     color: #121212;
