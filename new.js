@@ -1,3 +1,5 @@
+let credentialMap = {} //stores login info
+
 //code for arrow back button
 function back() {
     window.history.back();
@@ -8,64 +10,161 @@ function verifyEmail() {
     const password = document.getElementById("password").value;
 
     if (email === 'dipti1kumar@gmail.com') {
-        window.location.href = 'volunteer/volunteerVerified.html';
+        window.location.href = 'volunteerVerified.html';
     } else {
-       window.location.href = 'volunteer/volunteerNotVerified.html';
+       alert("Error! You are not verified. Contact Alberta Health Services Volunteer Department to volunteer.");
     }
 
 }
-// code for daily logs
+//code for storing user credentials in sign up page
 
-function saveLog() {
-    const activity = document.getElementById('activity').value;
-    const mood = document.getElementById('mood').value;
-    const achievement = document.getElementById('achievement').value;
-    const challenges = document.getElementById('challenges').value;
-    const comments = document.getElementById('comments').value;
-    const date = new Date().toISOString().split('T')[0];
+function signIn(event) {
+    event.preventDefault(); // Prevent form from submitting the traditional way
 
-    const log = {
-        date: date,
-        activity: activity,
-        mood: mood,
-        achievement: achievement,
-        challenges: challenges,
-        comments: comments
-    };
+    const email = document.getElementById('email').value.trim(); // Get the value entered in the email input box
+    const pass = document.getElementById('password').value.trim();
 
+    console.log('Email:', email);
+    console.log('Password:', pass);
 
-    let logs = JSON.parse(localStorage.getItem('logs')) || [];
-    logs.push(log);
-    localStorage.setItem('logs', JSON.stringify(logs));
+    // Retrieve the existing credentials from localStorage
+    let credentials = localStorage.getItem('credentials');
+    credentials = credentials ? JSON.parse(credentials) : {};
 
-    alert('Log saved!');
-    // Redirect to dailyLog.html
-    window.location.href = 'dailyLog.html';
+    if (!credentials[email]) {
+        // Store the new credentials
+        credentials[email] = pass;
+
+        // Save the updated credentials back to localStorage
+        localStorage.setItem('credentials', JSON.stringify(credentials));
+
+        // Log to confirm storage
+        console.log('Stored credentials:', credentials);
+
+        // Navigate to the homepage after storing the credentials
+        window.location.href = 'homepage.html';
+    } else {
+        alert("An account with this email address already exists");
+    }
 }
 
-function displayLogs() {
-    const logs = JSON.parse(localStorage.getItem('logs')) || [];
-    const logsContainer = document.getElementById('logsContainer');
+function login(event) {
+    event.preventDefault(); // Prevent form from submitting the traditional way
 
-    console.log('Logs retrieved:', logs);
+    const email = document.getElementById('loginEmail').value.trim(); // Get the value entered in the email input box
+    const pass = document.getElementById('loginPass').value.trim();
 
-    logsContainer.innerHTML = ''; // Clear previous logs
-    logs.forEach(log => {
+    console.log('Login Email:', email);
+    console.log('Login Password:', pass);
+
+    // Retrieve the stored credentials from localStorage
+    const credentials = JSON.parse(localStorage.getItem('credentials')) || {};
+
+    // Log to confirm retrieval
+    console.log('Retrieved credentials:', credentials);
+
+    // Check if the entered email exists and the password matches
+    if(!credentials[email] ){
+        alert("An account with this email doesnt exist. Try signing up for an account.")
+    }
+    else if (credentials[email] && credentials[email] === pass) {
+        window.location.href = 'homepage.html'; // Redirect to homepage
+    } else {
+        alert('Invalid email or password. Please try again.');
+    }
+}
+
+
+// code for daily logs
+document.addEventListener("DOMContentLoaded", function() {
+    const logsContainer = document.querySelector('#logsContainer');
+    const logForm = document.querySelector('#logForm');
+    const nextButton = document.querySelector('#nextButton');
+    const prevButton = document.querySelector('#prevButton');
+
+    let currentLogIndex = 0;
+
+    if (logsContainer) {
+        displayLog(true); // Display the latest log on page load
+        if (nextButton) nextButton.addEventListener('click', () => changeLog(1));
+        if (prevButton) prevButton.addEventListener('click', () => changeLog(-1));
+    }
+
+    if (logForm) {
+        document.querySelector('#logForm button').addEventListener('click', saveLog);
+    }
+
+    function saveLog() {
+        console.log("saveLog function called");
+
+        const activity = document.getElementById('activity').value;
+        const mood = document.getElementById('mood').value;
+        const achievement = document.getElementById('achievement').value;
+        const challenges = document.getElementById('challenges').value;
+        const comments = document.getElementById('comments').value;
+        const date = new Date().toISOString().split('T')[0];
+
+        const log = {
+            date: date,
+            activity: activity,
+            mood: mood,
+            achievement: achievement,
+            challenges: challenges,
+            comments: comments
+        };
+
+        let logs = JSON.parse(localStorage.getItem('logs')) || [];
+        logs.push(log);
+        localStorage.setItem('logs', JSON.stringify(logs));
+
+        console.log('Log saved:', log);
+        console.log('All logs:', logs);
+
+        alert('Log saved!');
+
+        // Redirect to dailyLog.html
+        window.location.href = 'dailyLog.html';
+    }
+
+    function displayLog(isInitialLoad = false) {
+        const logs = JSON.parse(localStorage.getItem('logs')) || [];
+        if (logs.length === 0) {
+            logsContainer.innerHTML = '<p>No logs available.</p>';
+            if (nextButton) nextButton.disabled = true;
+            if (prevButton) prevButton.disabled = true;
+            return;
+        }
+
+        if (isInitialLoad) {
+            currentLogIndex = logs.length - 1; // Show the latest log on initial load
+        }
+
+        logsContainer.innerHTML = ''; // Clear previous content
+
+        const log = logs[currentLogIndex];
         const logDiv = document.createElement('div');
+        logDiv.classList.add('log-entry');
         logDiv.innerHTML = `
-            <h2>${log.date} - Daily Log</h2>
-            <p><strong>Activity:</strong> ${log.activity}</p>
-            <p><strong>Mood/Health:</strong> ${log.mood}</p>
-            <p><strong>Achievement/New Skill Learned:</strong> ${log.achievement}</p>
-            <p><strong>Challenges:</strong> ${log.challenges}</p>
-            <p><strong>General Comments:</strong> ${log.comments}</p>
-            <hr>
+            <h3>Date: ${log.date}</h3>
+            <p>Activity: ${log.activity}</p>
+            <p>Mood/Health: ${log.mood}</p>
+            <p>Achievement/New Skill Learned: ${log.achievement}</p>
+            <p>Challenges: ${log.challenges}</p>
+            <p>Comments: ${log.comments}</p>
         `;
         logsContainer.appendChild(logDiv);
-    });
-}
 
+        if (prevButton) prevButton.disabled = currentLogIndex === 0;
+        if (nextButton) nextButton.disabled = currentLogIndex === logs.length - 1;
+    }
 
+    function changeLog(direction) {
+        const logs = JSON.parse(localStorage.getItem('logs')) || [];
+        currentLogIndex += direction;
+        currentLogIndex = Math.max(0, Math.min(currentLogIndex, logs.length - 1));
+        displayLog();
+    }
+});
 
 //code for the skills progress section
 document.addEventListener('DOMContentLoaded', () => {
@@ -144,3 +243,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// handle skills for summary
+// Function to get skills from localStorage
+function getSkills() {
+    return JSON.parse(localStorage.getItem("stickynotes-skills") || "[]");
+}
+
+// Function to get the date of the past 7 days
+function getPastWeekDates() {
+    const dates = [];
+    for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        dates.push(date.toISOString().split('T')[0]);
+    }
+    return dates;
+}
+
+// Function to count skills learned each day
+function countSkillsPerDay() {
+    const skills = getSkills();
+    const pastWeekDates = getPastWeekDates();
+    const skillCounts = pastWeekDates.map(date => {
+        return skills.filter(skill => new Date(skill.date).toISOString().split('T')[0] === date).length;
+    });
+    return skillCounts;
+}
+
+// Function to create the chart
+function createSkillsChart() {
+    const ctx = document.getElementById('skillsChart').getContext('2d');
+    const pastWeekDates = getPastWeekDates();
+    const skillCounts = countSkillsPerDay();
+
+    const skillsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: pastWeekDates,
+            datasets: [{
+                label: 'Skills Learned',
+                data: skillCounts,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Call the function to create the chart when the page loads
+document.addEventListener('DOMContentLoaded', createSkillsChart);
