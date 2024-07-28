@@ -13,16 +13,13 @@
 
     <div class="signup">
     <h1>Log in to your account</h1>
-    <form>
-        <label for="email">Email</label>
-        <input type="text" id="email" placeholder="johndoe@gmail.com">
-        <label for="password">Password</label>
-        <input type="password" id="password">
-        <a href="changePass.html"></a>
-        <input type="button" style="width:375px; margin-top: 20px; font-size: large; background-color: aquamarine;" value="Next">
-        
+    <form id="loginForm" onsubmit="login(event)">
+        <label>Email</label>
+        <input type="text" placeholder="johndoe@gmail.com" id="loginEmail" required autocomplete="username">
+        <label>Password</label>
+        <input type="password" id="loginPass" required autocomplete="current-password">
+        <input type="submit" style="width:375px; margin-top: 20px; font-size: large; background-color: aquamarine;" value="Login">
         <p><a href="forgotPass.html" style="color: black;"> Forgot your password?</a></p>
-
     </form>
     </div>
 </body>

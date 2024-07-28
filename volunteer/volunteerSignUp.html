@@ -14,12 +14,12 @@
 
     <div class="signup">
     <h1>Create a new account with a verified volunteer email</h1>
-    <form>
-        <label for="email">Email</label>
-        <input type="text" id="email" placeholder="johndoe@gmail.com">
-        <label for="password">Password</label>
-        <input type="password" id="password">
-        <input type="button" style="width:375px; margin-top: 20px; font-size: large; background-color: aquamarine;" value="Sign up" onclick="verifyEmail()">
+    <form id="signupForm" onsubmit="signIn(event)">
+        <label>Email</label>
+        <input type="text" placeholder="johndoe@gmail.com" id="email" required autocomplete="username">
+        <label>Password</label>
+        <input type="password" id="password" required autocomplete="new-password">
+        <input type="submit" style="width:375px; margin-top: 20px; font-size: large; background-color: aquamarine;" value="Sign up" onclick="verifyEmail()">
         <p>Already have an account? <a href="volunteerLogin.html" style="color: black;"> Login Here!</a></p>
     </form>
     </div>

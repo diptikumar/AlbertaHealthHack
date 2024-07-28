@@ -6,8 +6,7 @@ function back() {
 }
 
 function verifyEmail() {
-    const email = document.getElementById("email").ariaValueMax;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value;
 
     if (email === 'dipti1kumar@gmail.com') {
         window.location.href = 'volunteerVerified.html';
