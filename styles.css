@@ -3,6 +3,11 @@ html {
 }
 
 .container {
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 10px;
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center;
   height: 500px;
   position: relative;
 }
@@ -56,11 +61,12 @@ html {
   text-align: center;
   margin: 4px 2px;
   border-radius: 100px;
-  background: olive;
+  background: #ECDFCD;
 }
 
 .back-arrow:before {
   content: '←';
+  color: #121212;
   font-size: 1.5rem;
 }
 
@@ -158,7 +164,7 @@ h1 {
 }
 .daily p {
   margin: 20px auto;
-  text-weight: 100;
+  font-weight: 100;
   text-align: left;
   line-height: 25px;
 }
