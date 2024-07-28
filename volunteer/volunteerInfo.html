@@ -1,0 +1,74 @@
+<!this is the search page for parents>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Search</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- Link to external CSS file -->
+    <link 
+     href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" 
+     rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="signup">
+        <h1>Tell us a bit about yourself</h1>
+        <form>
+            <button class="btn" id="btn" style="width: 380px;">
+                Dropdown
+                <i class="bx bx-chevron-down" id="arrow"></i>
+              </button>
+            <label for="email">What disability do you have?</label> <!--needs to be a dropdown-->
+            <input type="" id="email" placeholder="johndoe@gmail.com">
+            <label for="password">What are your interests/ hobbies?</label>
+            <input type="password" id="password">
+            <label for="password">Is there anything else parents should know?</label>
+            <input type="password" id="password">
+            <a href="changePass.html"></a>
+            <input type="button" style="width:375px; margin-top: 20px; font-size: large; background-color: aquamarine;" value="Submit">
+            
+    
+        </form>
+        </div>
+    
+    
+
+     <!-- Includes Axios for making HTTP requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+         // Function to search volunteers based on disability type
+        function searchVolunteers() {
+            const disability = document.getElementById('searchInput').value;
+
+            axios.get(`/api/users/search?disability=${disability}`)
+                .then(response => {
+                    const results = response.data;
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = ''; // Clears previous results
+
+                    if (results.length > 0) {
+                        // Loops through each volunteer and create a div to display their information
+                        results.forEach(volunteer => {
+                            const volunteerDiv = document.createElement('div');
+                            volunteerDiv.className = 'volunteer-profile';
+                            volunteerDiv.innerHTML = `
+                                <h3>${volunteer.name}</h3>
+                                <p><strong>Bio:</strong> ${volunteer.bio}</p>
+                                <p><strong>Disability Type:</strong> ${volunteer.disability}</p>
+                                <p><strong>Hobbies:</strong> ${volunteer.hobbies}</p>
+                            `;
+                            resultsDiv.appendChild(volunteerDiv);
+                        });
+                    } else {
+                        resultsDiv.innerHTML = '<p>No volunteers found for the specified disability.</p>';// Display message if no volunteers found
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching volunteers:', error);
+                    document.getElementById('results').innerHTML = '<p>Error fetching volunteers. Please try again later.</p>';// Display error message
+                });
+        }
+    </script>
+</body>
+</html>
