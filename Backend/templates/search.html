@@ -1,0 +1,51 @@
+<!this is the search page for parents>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Search for Volunteers</h2>
+        <input type="text" id="searchInput" placeholder="Enter disability type">
+        <button onclick="searchVolunteers()">Search</button>
+        <div id="results"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function searchVolunteers() {
+            const disability = document.getElementById('searchInput').value;
+
+            axios.get(`/api/users/search?disability=${disability}`)
+                .then(response => {
+                    const results = response.data;
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = ''; // Clear previous results
+
+                    if (results.length > 0) {
+                        results.forEach(volunteer => {
+                            const volunteerDiv = document.createElement('div');
+                            volunteerDiv.className = 'volunteer-profile';
+                            volunteerDiv.innerHTML = `
+                                <h3>${volunteer.name}</h3>
+                                <p><strong>Bio:</strong> ${volunteer.bio}</p>
+                                <p><strong>Disability Type:</strong> ${volunteer.disability}</p>
+                                <p><strong>Hobbies:</strong> ${volunteer.hobbies}</p>
+                            `;
+                            resultsDiv.appendChild(volunteerDiv);
+                        });
+                    } else {
+                        resultsDiv.innerHTML = '<p>No volunteers found for the specified disability.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching volunteers:', error);
+                    document.getElementById('results').innerHTML = '<p>Error fetching volunteers. Please try again later.</p>';
+                });
+        }
+    </script>
+</body>
+</html>

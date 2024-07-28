@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../styles.css">
-    <script src="../new.js"></script>
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Display Daily Log</title>
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="findmentor.html">Find Mentor</a></li>
-            <li><a href="dailyLog.html">Daily Log</a></li>
-            <li><a href="progress.html">Progress</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="parentLogin.html">Logout</a></li>
-        </ul>
-    </nav>
-
-    <button type="button" class="back-arrow" onclick="back()"></button>
-
-    
+    <div class="container">
+        <nav class="navbar">
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="findmentor.html">Find Mentor</a></li>
+                <li><a href="dailyLog.html">Daily Log</a></li>
+                <li><a href="progress.html">Progress</a></li>
+                <li><a href="parentLogin.html">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <h1>July 27, 2024 - Daily Log -</h1>
+            <div class="log-entry">
+                <p><strong>Activity:</strong> <span id="log-activity"></span></p>
+                <p><strong>Mood/Health:</strong> <span id="log-mood"></span></p>
+                <p><strong>Achievement/New Skill Learned:</strong> <span id="log-achievement"></span></p>
+                <p><strong>Challenges:</strong> <span id="log-challenges"></span></p>
+                <p><strong>General Comments:</strong> <span id="log-comments"></span></p>
+            </div>
+            <div class="pagination">
+                <a href="#" class="previous-page">&lt; previous page</a>
+                <a href="#" class="next-page">next page &gt;</a>
+            </div>
+        </div>
+        <div class="calendar">
+            <h2>July 2024</h2>
+            <!-- Add your calendar component here -->
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
