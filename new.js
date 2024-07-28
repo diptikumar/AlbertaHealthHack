@@ -6,7 +6,7 @@ function back() {
 }
 
 function verifyEmail() {
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").ariaValueMax;
     const password = document.getElementById("password").value;
 
     if (email === 'dipti1kumar@gmail.com') {
@@ -76,34 +76,78 @@ function saveLog() {
     logs.push(log);
     localStorage.setItem('logs', JSON.stringify(logs));
 
+    console.log('Log saved:', log);
+    console.log('All logs:', logs);
+
     alert('Log saved!');
+
     // Redirect to dailyLog.html
     window.location.href = 'dailyLog.html';
 }
 
-function displayLogs() {
-    const logs = JSON.parse(localStorage.getItem('logs')) || [];
-    const logsContainer = document.getElementById('logsContainer');
+document.addEventListener("DOMContentLoaded", function() {
+    const logsContainer = document.querySelector('#logsContainer');
+    const logForm = document.querySelector('#logForm');
 
-    console.log('Logs retrieved:', logs);
+    if (logsContainer) {
+        displayLogs();
+    }
 
-    logsContainer.innerHTML = ''; // Clear previous logs
-    logs.forEach(log => {
-        const logDiv = document.createElement('div');
-        logDiv.innerHTML = `
-            <h2>${log.date} - Daily Log</h2>
-            <p><strong>Activity:</strong> ${log.activity}</p>
-            <p><strong>Mood/Health:</strong> ${log.mood}</p>
-            <p><strong>Achievement/New Skill Learned:</strong> ${log.achievement}</p>
-            <p><strong>Challenges:</strong> ${log.challenges}</p>
-            <p><strong>General Comments:</strong> ${log.comments}</p>
-            <hr>
-        `;
-        logsContainer.appendChild(logDiv);
-    });
-}
+    if (logForm) {
+        document.querySelector('#logForm button').addEventListener('click', saveLog);
+    }
 
+    function saveLog() {
+        const activity = document.getElementById('activity').value;
+        const mood = document.getElementById('mood').value;
+        const achievement = document.getElementById('achievement').value;
+        const challenges = document.getElementById('challenges').value;
+        const comments = document.getElementById('comments').value;
+        const date = new Date().toISOString().split('T')[0];
 
+        const log = {
+            date: date,
+            activity: activity,
+            mood: mood,
+            achievement: achievement,
+            challenges: challenges,
+            comments: comments
+        };
+
+        let logs = JSON.parse(localStorage.getItem('logs')) || [];
+        logs.push(log);
+        localStorage.setItem('logs', JSON.stringify(logs));
+
+        console.log('Log saved:', log);
+        console.log('All logs:', logs);
+
+        alert('Log saved!');
+
+        // Redirect to dailyLog.html
+        window.location.href = 'parent/dailyLog.html';
+    }
+
+    function displayLogs() {
+        const logs = JSON.parse(localStorage.getItem('logs')) || [];
+        const logsContainer = document.getElementById('logsContainer');
+
+        logsContainer.innerHTML = ''; // Clear previous content
+
+        logs.forEach(log => {
+            const logDiv = document.createElement('div');
+            logDiv.classList.add('log-entry');
+            logDiv.innerHTML = `
+                <h3>Date: ${log.date}</h3>
+                <p>Activity: ${log.activity}</p>
+                <p>Mood/Health: ${log.mood}</p>
+                <p>Achievement/New Skill Learned: ${log.achievement}</p>
+                <p>Challenges: ${log.challenges}</p>
+                <p>Comments: ${log.comments}</p>
+            `;
+            logsContainer.appendChild(logDiv);
+        });
+    }
+});
 
 function checkSamePass(){
     const newPassword = document.getElementById("newPassword").value;
