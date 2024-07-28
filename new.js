@@ -146,8 +146,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-
-
 //code for the skills progress section
 document.addEventListener('DOMContentLoaded', () => {
     const skillsContainer = document.getElementById("skills");
@@ -225,3 +223,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// handle skills for summary
+// Function to get skills from localStorage
+function getSkills() {
+    return JSON.parse(localStorage.getItem("stickynotes-skills") || "[]");
+}
+
+// Function to get the date of the past 7 days
+function getPastWeekDates() {
+    const dates = [];
+    for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        dates.push(date.toISOString().split('T')[0]);
+    }
+    return dates;
+}
+
+// Function to count skills learned each day
+function countSkillsPerDay() {
+    const skills = getSkills();
+    const pastWeekDates = getPastWeekDates();
+    const skillCounts = pastWeekDates.map(date => {
+        return skills.filter(skill => new Date(skill.date).toISOString().split('T')[0] === date).length;
+    });
+    return skillCounts;
+}
+
+// Function to create the chart
+function createSkillsChart() {
+    const ctx = document.getElementById('skillsChart').getContext('2d');
+    const pastWeekDates = getPastWeekDates();
+    const skillCounts = countSkillsPerDay();
+
+    const skillsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: pastWeekDates,
+            datasets: [{
+                label: 'Skills Learned',
+                data: skillCounts,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Call the function to create the chart when the page loads
+document.addEventListener('DOMContentLoaded', createSkillsChart);
