@@ -392,6 +392,8 @@ h2 {
 
 button {
   height: 40px;
+  width: 100px;
+  margin-left: 48%;
   border-radius: 21px;
   border: none;
   background-color: #35752b;
