@@ -5,7 +5,8 @@
     <script src="../new.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>homepage</title>
+
 </head>
 <body>
     <nav class="navbar">
@@ -17,20 +18,21 @@
            
         </ul>
     </nav>
+    <button type="button" class="back-arrow" onclick="back()"></button>
 
     <!-- Main container -->
     <div class="container">
+    
         <h2>Search for Volunteers</h2>
         <input type="text" id="searchInput" placeholder="Enter disability type"><!-- Input field for search -->
         <button onclick="searchVolunteers()">Search</button><!-- Search button -->
         <div id="results" class="results-container"></div> <!-- Container for displaying search results -->
+    
     </div>
+    
 
     
 
-    <button type="button" class="back-arrow" onclick="back()"></button>
-
-    
     <!-- Includes Axios for making HTTP requests -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
