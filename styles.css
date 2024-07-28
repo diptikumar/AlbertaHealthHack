@@ -131,7 +131,7 @@ h1 {
 .content {
   width: 100%;
   top: 20%;
-  position: absolute;
+  position: relative;
   transform: translateY(-50%);
   text-align: center;
   color: #121212;
@@ -293,6 +293,36 @@ button {
     color: #009688;
     cursor: pointer;
     text-align: center; /* Center the text */
+}
+
+.summary{
+    width: 70%;
+    position: center;
+    margin-top: 5px;
+    margin-left: 15%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #009688;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.summary-section{
+     width: 95%;
+     position: center;
+     margin-left: 2.5%;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     background-color: #BFDACC;
+     text-align: center;
+     border-radius: 20px;
+ }
+
+.resources{
+    width:100%;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .button-container button:hover {

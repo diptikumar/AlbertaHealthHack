@@ -54,7 +54,8 @@ function login(event) {
     }
 }
 
-// Code for daily logs
+
+// code for daily logs
 document.addEventListener("DOMContentLoaded", function() {
     const logsContainer = document.querySelector('#logsContainer');
     const logForm = document.querySelector('#logForm');
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentLogIndex = 0;
 
     if (logsContainer) {
-        displayLog();
+        displayLog(true); // Display the latest log on page load
         if (nextButton) nextButton.addEventListener('click', () => changeLog(1));
         if (prevButton) prevButton.addEventListener('click', () => changeLog(-1));
     }
@@ -105,13 +106,17 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = 'dailyLog.html';
     }
 
-    function displayLog() {
+    function displayLog(isInitialLoad = false) {
         const logs = JSON.parse(localStorage.getItem('logs')) || [];
         if (logs.length === 0) {
             logsContainer.innerHTML = '<p>No logs available.</p>';
             if (nextButton) nextButton.disabled = true;
             if (prevButton) prevButton.disabled = true;
             return;
+        }
+
+        if (isInitialLoad) {
+            currentLogIndex = logs.length - 1; // Show the latest log on initial load
         }
 
         logsContainer.innerHTML = ''; // Clear previous content
@@ -140,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
         displayLog();
     }
 });
+
 
 
 //code for the skills progress section
