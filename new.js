@@ -17,29 +17,36 @@ function verifyEmail() {
 
 }
 //code for storing user credentials in sign up page
-function signIn(event){
-    event.preventDefault(); // Prevent form from submitting the traditional way: needed some help from chat gpt
+function signIn(event) {
+    event.preventDefault(); // Prevent form from submitting the traditional way
 
-    const email = document.getElementById('email').value; //get the value enetered in the email input box
+    const email = document.getElementById('email').value; // Get the value entered in the email input box
     const pass = document.getElementById('password').value;
 
-    // Store the credentials in localStorage
-    localStorage.setItem(email, pass);
+    // Retrieve the existing credentials from localStorage
+    const credentials = JSON.parse(localStorage.getItem('credentials')) || {};
+
+    // Store the new credentials
+    credentials[email] = pass;
+
+    // Save the updated credentials back to localStorage
+    localStorage.setItem('credentials', JSON.stringify(credentials));
 
     // Navigate to the homepage after storing the credentials
     window.location.href = 'homepage.html';
 }
 
-function login(event){
-    event.preventDefault(); // Prevent form from submitting the traditional way: needed some help from chat gpt
+function login(event) {
+    event.preventDefault(); // Prevent form from submitting the traditional way
 
-    const email = document.getElementById('loginEmail').value; //get the value enetered in the email input box
+    const email = document.getElementById('loginEmail').value; // Get the value entered in the email input box
     const pass = document.getElementById('loginPass').value;
 
-    const storedPassword = localStorage.getItem(email);
+    // Retrieve the stored credentials from localStorage
+    const credentials = JSON.parse(localStorage.getItem('credentials')) || {};
 
-   // Check if the entered password matches the stored password
-    if (storedPassword === pass) {
+    // Check if the entered email exists and the password matches
+    if (credentials[email] && credentials[email] === pass) {
         alert('Login successful!');
         window.location.href = 'homepage.html'; // Redirect to homepage
     } else {
