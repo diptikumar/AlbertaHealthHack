@@ -27,28 +27,6 @@
         <p id="responseMessage"></p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        document.getElementById('volunteerForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const bio = document.getElementById('bio').value;
-            const disability = document.getElementById('disability').value;
-
-            axios.post('/submit_volunteer', {
-                name: name,
-                bio: bio,
-                disability: disability,
-                userType: 'volunteer'
-            })
-            .then(response => {
-                document.getElementById('responseMessage').textContent = 'Profile created successfully!';
-            })
-            .catch(error => {
-                document.getElementById('responseMessage').textContent = 'Error creating profile. Please try again.';
-                console.error('Error:', error);
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
