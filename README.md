@@ -1,6 +1,6 @@
-# AlbertaHealthHack
+# ConnectAbility
 
-## ConnectAbility
+## AlbertaHealthHack
 
 ### Background
 All children deserve to be part of society and integrate seamlessly after rehabilitation. ConnectAbility aims to connect experienced adults with youth in rehab to share their experiences, teach them new skills, and connect them to a community of like-minded people.
