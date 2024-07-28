@@ -103,14 +103,14 @@ h1 {
 
 .navbar ul {
   list-style-type: none;
-  background-color: aquamarine;
+  background-color: #6AD9D9;
   padding: 0px;
   margin: 0px;
   overflow: hidden;
 }
 
 .navbar a {
-  color: #fff;
+  color: #121212;
   text-decoration: none;
   padding: 15px;
   display: block;
@@ -118,7 +118,7 @@ h1 {
 }
 
 .navbar a:hover {
-  background-color: bisque;
+  background-color: #FFD503;
 }
 
 .navbar li {
