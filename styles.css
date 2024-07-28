@@ -123,3 +123,17 @@ h1{
   resize:none; /*so note isnt resizable*/
   font-size: 16px;
 }
+
+.addButton{
+  height: 200px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 120px;
+  color: rgba(0, 0, 0,0.5);
+  transition: background 0.2s;
+}
+
+.addButton:hover{
+  background: rgba(0,0,0,0.2);
+}
