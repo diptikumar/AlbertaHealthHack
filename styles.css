@@ -106,3 +106,20 @@ h1{
   float: right;
 }
 
+#skills{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px); /*allows us to position the skill notes on page*/
+  padding: 24px;
+  gap: 24px;
+}
+
+.notes{
+  height: 200px;
+  box-sizing: border-box;
+  padding: 16px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.15);
+  resize:none; /*so note isnt resizable*/
+  font-size: 16px;
+}
