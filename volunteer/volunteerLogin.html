@@ -12,13 +12,15 @@
     <button type="button" class="back-arrow" onclick="window.location.href='volunteerSignUp.html'"></button>
 
     <div class="signup">
-    <h1>Log in to your account</h1>
+    <h1 style="color: #54B77E;">Log in to your account</h1>
     <form id="loginForm" onsubmit="login(event)">
         <label>Email</label>
-        <input type="text" placeholder="johndoe@gmail.com" id="loginEmail" required autocomplete="username">
+        <input type="text" placeholder="johndoe@gmail.com" id="email" required autocomplete="username">
         <label>Password</label>
         <input type="password" id="loginPass" required autocomplete="current-password">
-        <input type="submit" style="width:375px; margin-top: 20px; font-size: large; background-color: aquamarine;" value="Login">
+        <a href="volunteerVerified.html">
+            <input type="submit" style="width:375px; margin-top: 20px; font-size: large; background-color: #54B77E;" value="Login">
+        </a>
         <p><a href="forgotPass.html" style="color: black;"> Forgot your password?</a></p>
     </form>
     </div>

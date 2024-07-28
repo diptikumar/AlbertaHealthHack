@@ -3,6 +3,11 @@ html {
 }
 
 .container {
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 10px;
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center;
   height: 500px;
   position: relative;
 }
@@ -56,11 +61,12 @@ html {
   text-align: center;
   margin: 4px 2px;
   border-radius: 100px;
-  background: olive;
+  background: #ECDFCD;
 }
 
 .back-arrow:before {
   content: '←';
+  color: #121212;
   font-size: 1.5rem;
 }
 
@@ -97,14 +103,14 @@ h1 {
 
 .navbar ul {
   list-style-type: none;
-  background-color: aquamarine;
+  background-color: #6AD9D9;
   padding: 0px;
   margin: 0px;
   overflow: hidden;
 }
 
 .navbar a {
-  color: #fff;
+  color: #121212;
   text-decoration: none;
   padding: 15px;
   display: block;
@@ -112,7 +118,7 @@ h1 {
 }
 
 .navbar a:hover {
-  background-color: bisque;
+  background-color: #FFD503;
 }
 
 .navbar li {
@@ -122,7 +128,7 @@ h1 {
 .banner {
   background-color: #BFDACC;
   width: 100%;
-  height: 100vh;
+  height: 150vh;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -130,7 +136,7 @@ h1 {
 
 .content {
   width: 100%;
-  top: 53%;
+  top: 40%;
   position: absolute;
   transform: translateY(-50%);
   text-align: center;
@@ -138,7 +144,7 @@ h1 {
 }
 
 .content h1 {
-  font-size: 40px;
+  font-size: 35px;
   margin-top: 10px;
 }
 
@@ -158,14 +164,14 @@ h1 {
 }
 .daily p {
   margin: 20px auto;
-  text-weight: 100;
+  font-weight: 100;
   text-align: left;
   line-height: 25px;
 }
 
 .form {
-  width: 100%;
-  top: 100%;
+  width: 80%;
+  top: 80%;
   position: absolute;
   transform: translateY(-50%);
   text-align: center;
@@ -173,7 +179,7 @@ h1 {
 }
 
 .form h1 {
-  font-size: 50px;
+  font-size: 43px;
   margin-top: 20px;
 }
 
@@ -323,6 +329,11 @@ button {
     margin-top: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.graph{
+    width:350px;
+    height: 220px;
 }
 
 .button-container button:hover {
