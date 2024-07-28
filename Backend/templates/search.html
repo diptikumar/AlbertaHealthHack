@@ -26,34 +26,6 @@
 
     <!-- Includes Axios for making HTTP requests -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        function searchVolunteers() {
-            const disability = document.getElementById('searchInput').value;
-            
-            // Dummy data for demonstration
-            const results = Array(6).fill({
-                name: 'Emma Knight',
-                bio: 'Passionate volunteer with a love for helping others.'
-            });
-
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = ''; // Clear previous results
-
-            if (results.length > 0) {
-                results.forEach((volunteer, index) => {
-                    const volunteerDiv = document.createElement('div');
-                    volunteerDiv.className = 'volunteer-profile';
-                    volunteerDiv.innerHTML = `
-                        <h3>Volunteer Profile</h3>
-                        <p><strong>Name:</strong> ${volunteer.name}</p>
-                        <p><strong>Bio:</strong> ${volunteer.bio}</p>
-                    `;
-                    resultsDiv.appendChild(volunteerDiv);
-                });
-            } else {
-                resultsDiv.innerHTML = '<p>No volunteers found for the specified disability.</p>';
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
