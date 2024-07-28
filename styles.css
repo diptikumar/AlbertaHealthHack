@@ -1,3 +1,6 @@
+html {
+  font-family: Inter,sans-serif;
+}
 .container {
     height: 500px;
     position: relative;
@@ -23,14 +26,14 @@
   cursor: pointer;
   display: inline-flex;
   flex: 1 1 auto;
-  font-family: Inter,sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   justify-content: center;
   line-height: 1;
-  margin: 0;
+  margin: 1rem; /* Added margin for space between buttons */
   outline: none;
-  padding: 1rem 1.2rem;
+  padding: 1rem 1.5rem;
+  height: 7rem;
   text-align: center;
   text-decoration: none;
   transition: box-shadow .2s,-webkit-box-shadow .2s;
