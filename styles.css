@@ -177,6 +177,7 @@ h1 {
 .button1:hover {
   border: none;
 }
+
 #skills{
   display: grid;
   grid-template-columns: repeat(auto-fill, 200px); /*allows us to position the skill notes on page*/
@@ -195,16 +196,15 @@ h1 {
   font-size: 16px;
 }
 
-.addButton{
+.add-button{
   height: 200px;
   border: none;
   outline: none;
   border-radius: 10px;
   font-size: 120px;
   color: rgba(0, 0, 0,0.5);
-  transition: background 0.2s;
 }
 
-.addButton:hover{
+.add-button:hover{
   background: rgba(0,0,0,0.2);
 }
