@@ -380,8 +380,9 @@ h2 {
 }
 
 #searchInput {
-  width: 754px;
+  width: 600px;
   height: 42px;
+  margin-left: 30%;
   border-radius: 21px;
   border: 1px solid #ccc;
   padding: 10px;
