@@ -148,6 +148,27 @@ h1 {
   line-height: 25px;
 }
 
+
+.form {
+  width: 100%;
+  top: 100%;
+  position: absolute;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #121212;
+}
+
+.form h1 {
+  font-size: 50px;
+  margin-top: 20px;
+}
+
+.form p {
+  margin: 20px auto;
+  font-weight: 100;
+  line-height: 25px;
+}
+
 .button1 {
   width: 200px;
   padding: 15px 0;
