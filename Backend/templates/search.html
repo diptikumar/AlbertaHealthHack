@@ -1,4 +1,3 @@
-<!this is the search page for parents>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,49 +16,43 @@
         <a href="#">Logout</a>
     </div>
     
-    <!-- Main container  -->
+    <!-- Main container -->
     <div class="container">
         <h2>Search for Volunteers</h2>
         <input type="text" id="searchInput" placeholder="Enter disability type"><!-- Input field for search -->
         <button onclick="searchVolunteers()">Search</button><!-- Search button -->
-        <div id="results"></div> <!-- Container for displaying search results -->
-    
+        <div id="results" class="results-container"></div> <!-- Container for displaying search results -->
     </div>
 
-     <!-- Includes Axios for making HTTP requests -->
+    <!-- Includes Axios for making HTTP requests -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-         // Function to search volunteers based on disability type
         function searchVolunteers() {
             const disability = document.getElementById('searchInput').value;
+            
+            // Dummy data for demonstration
+            const results = Array(6).fill({
+                name: 'Emma Knight',
+                bio: 'Passionate volunteer with a love for helping others.'
+            });
 
-            axios.get(`/api/users/search?disability=${disability}`)
-                .then(response => {
-                    const results = response.data;
-                    const resultsDiv = document.getElementById('results');
-                    resultsDiv.innerHTML = ''; // Clears previous results
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // Clear previous results
 
-                    if (results.length > 0) {
-                        // Loops through each volunteer and create a div to display their information
-                        results.forEach(volunteer => {
-                            const volunteerDiv = document.createElement('div');
-                            volunteerDiv.className = 'volunteer-profile';
-                            volunteerDiv.innerHTML = `
-                                <h3>${volunteer.name}</h3>
-                                <p><strong>Bio:</strong> ${volunteer.bio}</p>
-                                <p><strong>Disability Type:</strong> ${volunteer.disability}</p>
-                                <p><strong>Hobbies:</strong> ${volunteer.hobbies}</p>
-                            `;
-                            resultsDiv.appendChild(volunteerDiv);
-                        });
-                    } else {
-                        resultsDiv.innerHTML = '<p>No volunteers found for the specified disability.</p>';// Display message if no volunteers found
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching volunteers:', error);
-                    document.getElementById('results').innerHTML = '<p>Error fetching volunteers. Please try again later.</p>';// Display error message
+            if (results.length > 0) {
+                results.forEach((volunteer, index) => {
+                    const volunteerDiv = document.createElement('div');
+                    volunteerDiv.className = 'volunteer-profile';
+                    volunteerDiv.innerHTML = `
+                        <h3>Volunteer Profile</h3>
+                        <p><strong>Name:</strong> ${volunteer.name}</p>
+                        <p><strong>Bio:</strong> ${volunteer.bio}</p>
+                    `;
+                    resultsDiv.appendChild(volunteerDiv);
                 });
+            } else {
+                resultsDiv.innerHTML = '<p>No volunteers found for the specified disability.</p>';
+            }
         }
     </script>
 </body>
