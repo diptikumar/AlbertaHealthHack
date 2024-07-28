@@ -10,7 +10,7 @@ function verifyEmail() {
     if (email === 'dipti1kumar@gmail.com') {
         window.location.href = 'volunteerVerified.html';
     } else {
-       window.location.href = 'volunteerNotVerified.html';
+       alert("Error! You are not verified. Contact Alberta Health Services Volunteer Department to volunteer.");
     }
 
 }
