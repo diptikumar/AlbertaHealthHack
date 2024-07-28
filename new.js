@@ -49,41 +49,48 @@ function deleteSkill(id, element){
 }
 
 function saveLog() {
-    // Get the form values
     const activity = document.getElementById('activity').value;
     const mood = document.getElementById('mood').value;
     const achievement = document.getElementById('achievement').value;
     const challenges = document.getElementById('challenges').value;
     const comments = document.getElementById('comments').value;
+    const date = new Date().toISOString().split('T')[0];
 
-    // Save the values to localStorage
-    localStorage.setItem('log-activity', activity);
-    localStorage.setItem('log-mood', mood);
-    localStorage.setItem('log-achievement', achievement);
-    localStorage.setItem('log-challenges', challenges);
-    localStorage.setItem('log-comments', comments);
+    const log = {
+        date: date,
+        activity: activity,
+        mood: mood,
+        achievement: achievement,
+        challenges: challenges,
+        comments: comments
+    };
 
-    // Redirect to the daily log page
-    window.location.href = 'dailyLog.html';
+    let logs = JSON.parse(localStorage.getItem('logs')) || [];
+    logs.push(log);
+    localStorage.setItem('logs', JSON.stringify(logs));
+
+    alert('Log saved!');
+    document.getElementById('logForm').reset();
 }
 
-function displayLog() {
-    // Get the stored values from localStorage
-    const activity = localStorage.getItem('log-activity');
-    const mood = localStorage.getItem('log-mood');
-    const achievement = localStorage.getItem('log-achievement');
-    const challenges = localStorage.getItem('log-challenges');
-    const comments = localStorage.getItem('log-comments');
+function displayLogs() {
+    const logs = JSON.parse(localStorage.getItem('logs')) || [];
+    const logsContainer = document.getElementById('logsContainer');
 
-    // Display the values on the daily log page
-    document.getElementById('log-activity').innerText = activity;
-    document.getElementById('log-mood').innerText = mood;
-    document.getElementById('log-achievement').innerText = achievement;
-    document.getElementById('log-challenges').innerText = challenges;
-    document.getElementById('log-comments').innerText = comments;
+    logsContainer.innerHTML = ''; // Clear previous logs
+    logs.forEach(log => {
+        const logDiv = document.createElement('div');
+        logDiv.innerHTML = `
+            <h2>${log.date} - Daily Log</h2>
+            <p><strong>Activity:</strong> ${log.activity}</p>
+            <p><strong>Mood/Health:</strong> ${log.mood}</p>
+            <p><strong>Achievement/New Skill Learned:</strong> ${log.achievement}</p>
+            <p><strong>Challenges:</strong> ${log.challenges}</p>
+            <p><strong>General Comments:</strong> ${log.comments}</p>
+            <hr>
+        `;
+        logsContainer.appendChild(logDiv);
+    });
 }
 
-// Call displayLog when the daily log page loads
-if (window.location.pathname.endsWith('dailyLog.html')) {
-    displayLog();
-}
+window.onload = displayLogs;
